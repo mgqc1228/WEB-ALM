@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programas | Secundaria Adolfo López Mateos - Campus Poncitlán</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Estilos propios de esta página (no tocan css/styles.css) */
+    .programas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+      list-style: none;
+    }
+    .programas-grid li {
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 24px;
+      padding: 36px 24px;
+    }
+    .programas-grid i { display: block; font-size: 2.2rem; margin-bottom: 16px; }
+    .programas-grid h3 { font-size: 1.3rem; }
+    .programas-grid p { margin-top: 10px; opacity: .9; }
+  </style>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+<div data-include="partials/header.html"></div>
+
+<main id="contenido">
+
+  <section class="hero fade">
+    <h1>Programas</h1>
+  </section>
+
+  <section class="fade" aria-labelledby="formacion-integral">
+    <div class="card">
+      <h2 id="formacion-integral">Formación integral</h2>
+      <div class="divider"></div>
+      <p>Nos dedicamos a la formación integral de estudiantes con énfasis en liderazgo, valores, educación bilingüe (a través del programa iSpeak) y actividades extracurriculares como deportes, desfiles, eventos culturales y desarrollo personal. Somos una institución comprometida con la excelencia académica y la formación de jóvenes líderes para el futuro.</p>
+      <ul class="programas-grid">
+        <li>
+          <i class="fas fa-flag" aria-hidden="true"></i>
+          <h3>Liderazgo</h3>
+        </li>
+        <li>
+          <i class="fas fa-heart" aria-hidden="true"></i>
+          <h3>Valores</h3>
+        </li>
+        <li>
+          <i class="fas fa-language" aria-hidden="true"></i>
+          <h3>Educación bilingüe</h3>
+          <p>A través del programa iSpeak.</p>
+        </li>
+        <li>
+          <i class="fas fa-trophy" aria-hidden="true"></i>
+          <h3>Actividades extracurriculares</h3>
+          <p>Deportes, desfiles y eventos culturales.</p>
+        </li>
+        <li>
+          <i class="fas fa-seedling" aria-hidden="true"></i>
+          <h3>Desarrollo personal</h3>
+        </li>
+        <li>
+          <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+          <h3>Excelencia académica</h3>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ispeak-section fade" aria-labelledby="ispeak-titulo">
+    <div class="card">
+      <img src="assets/img/logo-ispeak.jpg" alt="Logo iSpeak Escuela de Inglés" class="logo">
+      <h2 id="ispeak-titulo">iSpeak Escuela de Inglés</h2>
+      <p class="subtitle">Speak fast, learn easy ⚡️</p>
+      <p class="main">Programa de inglés 100% conversacional incorporado al CEU Adolfo López Mateos en Poncitlán, Jalisco. Aprende a hablar inglés de forma natural y divertida, como aprendiste tu idioma materno. Ideal para niños y jóvenes que quieren ser bilingües en un mundo globalizado. ¡Súmate al club de los bilingües!</p>
+      <ul>
+        <li>100% conversacional: ¡Habla desde el primer día!</li>
+        <li>Especial para #Kids y jóvenes</li>
+        <li>Método rápido, motivador y efectivo</li>
+        <li>Docentes con experiencia internacional</li>
+        <li>Integrado a tu educación en La Adolfo</li>
+        <li>¡Disfruta aprender inglés! #YoSoyiSpeak #PoweredByALM</li>
+      </ul>
+      <a href="https://wa.me/5213921210205" target="_blank" rel="noopener noreferrer" class="btn">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> ¡Contáctanos por WhatsApp!
+      </a>
+      <div class="socials socials--light">
+        <a href="https://www.instagram.com/ispeak_alm/" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram" aria-hidden="true"></i> Síguenos en Instagram
+        </a>
+      </div>
+      <img src="assets/img/alumnos-ispeak.png" alt="Alumnos felices aprendiendo inglés en iSpeak" class="alumnos" loading="lazy">
+    </div>
+  </section>
+
+  <section class="fade" aria-labelledby="mas-informacion">
+    <div class="card">
+      <h2 id="mas-informacion">Más información</h2>
+      <div class="divider"></div>
+      <p>Próximamente: plan de estudios y asignaturas.</p>
+      <p>Próximamente: horarios e inscripción a iSpeak.</p>
+      <a class="btn" href="contacto.html">Consultar al plantel</a>
+    </div>
+  </section>
+
+</main>
+
+<div data-include="partials/footer.html"></div>
+
+</body>
+</html>
