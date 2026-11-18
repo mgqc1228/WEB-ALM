@@ -450,3 +450,17 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
   .volver-arriba:hover { transform: translateY(-3px); }
 }
+
+/* Desplazamiento y legibilidad en pantallas estrechas */
+html { scroll-padding-top: 80px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-block: 88px 64px; }
+  .hero h1 { letter-spacing: .045em; overflow-wrap: anywhere; }
+  .btn { padding-inline: 24px; }
+  .card-note { overflow-wrap: anywhere; }
+}
