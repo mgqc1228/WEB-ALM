@@ -412,3 +412,19 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
     transform: none;
   }
 }
+
+/* Parallax suave durante la salida del hero */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll(root block)) and (animation-range: 0px 420px) {
+    .hero > * {
+      animation: desplazar-hero linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 420px;
+    }
+  }
+}
+
+@keyframes desplazar-hero {
+  from { transform: translateY(0); }
+  to { transform: translateY(12px); }
+}
