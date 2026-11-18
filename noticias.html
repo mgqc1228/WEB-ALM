@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias | Secundaria Adolfo López Mateos - Campus Poncitlán</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+      gap: 24px;
+      max-width: var(--ancho-max);
+      margin: 32px auto 0;
+      padding: 0;
+      list-style: none;
+      text-align: start;
+    }
+
+    .noticias-grid:empty { margin-top: 0; }
+    .noticias-grid .card {
+      height: 100%;
+      padding: clamp(20px, 4vw, 36px);
+      overflow-wrap: anywhere;
+    }
+    .noticias-grid img {
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    .noticias-grid p { margin-top: 8px; }
+  </style>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+<div data-include="partials/header.html"></div>
+
+<main id="contenido">
+
+  <section class="hero fade">
+    <h1>Noticias</h1>
+  </section>
+
+  <section class="fade" aria-labelledby="avisos-titulo">
+    <h2 id="avisos-titulo">Avisos del plantel</h2>
+    <div class="divider"></div>
+    <p id="noticias-estado" role="status">Próximamente: noticias del plantel</p>
+    <ul id="noticias-lista" class="noticias-grid" role="list"></ul>
+  </section>
+
+</main>
+
+<div data-include="partials/footer.html"></div>
+
+<script>
+  (() => {
+    const estado = document.getElementById('noticias-estado');
+    const lista = document.getElementById('noticias-lista');
+    const respaldo = estado.textContent;
+    const formatoFecha = new Intl.DateTimeFormat('es-MX', {
+      dateStyle: 'long',
+      timeZone: 'UTC'
+    });
+
+    function crearTarjeta(noticia) {
+      const elemento = document.createElement('li');
+      const tarjeta = document.createElement('article');
+      tarjeta.className = 'card';
+
+      if (typeof noticia.imagen === 'string' && noticia.imagen.trim()) {
+        const imagen = document.createElement('img');
+        imagen.src = noticia.imagen;
+        imagen.alt = typeof noticia.imagenAlt === 'string' ? noticia.imagenAlt : '';
+        imagen.loading = 'lazy';
+        imagen.addEventListener('error', () => imagen.remove(), { once: true });
+        tarjeta.append(imagen);
+      }
+
+      const titulo = document.createElement('h3');
+      titulo.textContent = noticia.titulo;
+      tarjeta.append(titulo);
+
+      if (typeof noticia.fecha === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(noticia.fecha)) {
+        const fecha = new Date(noticia.fecha);
+        if (!Number.isNaN(fecha.getTime()) && fecha.toISOString().slice(0, 10) === noticia.fecha) {
+          const fechaPublicacion = document.createElement('time');
+          fechaPublicacion.dateTime = noticia.fecha;
+          fechaPublicacion.textContent = formatoFecha.format(fecha);
+          tarjeta.append(fechaPublicacion);
+        }
+      }
+
+      const resumen = document.createElement('p');
+      resumen.textContent = noticia.resumen;
+      tarjeta.append(resumen);
+      elemento.append(tarjeta);
+      return elemento;
+    }
+
+    async function cargarNoticias() {
+      estado.textContent = 'Cargando noticias…';
+
+      try {
+        const respuesta = await fetch('data/noticias.json');
+        if (!respuesta.ok) throw new Error('No se pudieron cargar las noticias.');
+
+        const datos = await respuesta.json();
+        if (!Array.isArray(datos)) throw new Error('Formato de noticias incorrecto.');
+
+        const noticias = datos.filter(noticia =>
+          noticia && typeof noticia.titulo === 'string' && noticia.titulo.trim() &&
+          typeof noticia.resumen === 'string' && noticia.resumen.trim()
+        );
+        lista.replaceChildren(...noticias.map(crearTarjeta));
+        estado.textContent = noticias.length ? '' : respaldo;
+      } catch {
+        estado.textContent = respaldo;
+      }
+    }
+
+    cargarNoticias();
+  })();
+</script>
+
+</body>
+</html>
