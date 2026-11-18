@@ -300,3 +300,23 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .fade { opacity: 1 !important; transform: none !important; }
 }
+
+/* === MEJORAS VISUALES === */
+
+/* Entrada y navegación entre páginas */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  #contenido { animation: entrada-pagina 350ms var(--ease); }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 250ms;
+    animation-timing-function: var(--ease);
+  }
+}
+
+@keyframes entrada-pagina {
+  from { opacity: .8; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
