@@ -69,3 +69,20 @@
     iniciarMenu();
   });
 })();
+
+/* === MEJORAS VISUALES === */
+
+/* Encabezado compacto */
+(() => {
+  const raiz = document.documentElement;
+  let compacto = false;
+
+  function actualizarEncabezado() {
+    compacto = window.scrollY > (compacto ? 64 : 96);
+    raiz.classList.toggle('encabezado-compacto', compacto);
+  }
+
+  window.addEventListener('scroll', actualizarEncabezado, { passive: true });
+  window.addEventListener('pageshow', actualizarEncabezado);
+  actualizarEncabezado();
+})();

@@ -320,3 +320,12 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
   from { opacity: .8; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Encabezado compacto */
+.encabezado-compacto .site-header {
+  box-shadow: 0 8px 24px rgba(45, 0, 0, .32);
+}
+
+.encabezado-compacto .site-header .nav {
+  padding-block: 7px;
+}
