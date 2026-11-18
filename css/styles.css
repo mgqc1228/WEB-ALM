@@ -369,3 +369,46 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
 @keyframes entrada-tarjeta {
   from { opacity: .72; transform: translateY(8px); }
 }
+
+/* Interacción de enlaces, botones y tarjetas */
+.btn, .socials a, .card {
+  transition: transform 200ms var(--ease);
+}
+
+.nav-menu a, .footer-links a, .footer-social a {
+  transition: opacity 180ms var(--ease);
+}
+
+.ispeak-section ul li,
+.ispeak-section img.alumnos {
+  transition: transform 200ms var(--ease);
+}
+
+.card a:focus-visible,
+.site-header a:focus-visible,
+.site-footer a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.card:focus-within {
+  outline: 2px solid rgba(255, 255, 255, .6);
+  outline-offset: 4px;
+}
+
+.ispeak-section .card:focus-within {
+  outline-color: var(--rojo);
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .card:hover { transform: translateY(-3px); }
+  .btn:hover, .socials a:hover { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .btn:hover, .socials a:hover,
+  .ispeak-section img.logo:hover, .ispeak-section img.alumnos:hover,
+  .ispeak-section ul li:hover, .ispeak-section ul li:hover::before {
+    transform: none;
+  }
+}
