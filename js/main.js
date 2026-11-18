@@ -109,3 +109,16 @@
   if ('ResizeObserver' in window) new ResizeObserver(programarProgreso).observe(document.body);
   programarProgreso();
 })();
+
+/* Aparición escalonada de tarjetas */
+if ('IntersectionObserver' in window) {
+  const observarTarjetas = new IntersectionObserver(entradas => {
+    for (const entrada of entradas) {
+      if (!entrada.isIntersecting) continue;
+      entrada.target.classList.add('card-entrada');
+      observarTarjetas.unobserve(entrada.target);
+    }
+  }, { rootMargin: '0px 0px -24px 0px' });
+
+  document.querySelectorAll('#contenido .card').forEach(tarjeta => observarTarjetas.observe(tarjeta));
+}
