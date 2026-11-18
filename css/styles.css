@@ -329,3 +329,19 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
 .encabezado-compacto .site-header .nav {
   padding-block: 7px;
 }
+
+/* Indicador de lectura */
+.site-header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, .65);
+  transform: scaleX(var(--progreso-lectura, 0));
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header::after { content: none; }
+}

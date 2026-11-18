@@ -86,3 +86,26 @@
   window.addEventListener('pageshow', actualizarEncabezado);
   actualizarEncabezado();
 })();
+
+/* Indicador de lectura */
+(() => {
+  const raiz = document.documentElement;
+  let cuadro = null;
+
+  function actualizarProgreso() {
+    cuadro = null;
+    const altoDesplazable = raiz.scrollHeight - raiz.clientHeight;
+    const proporcion = altoDesplazable > 0 ? window.scrollY / altoDesplazable : 0;
+    raiz.style.setProperty('--progreso-lectura', Math.max(0, Math.min(proporcion, 1)));
+  }
+
+  function programarProgreso() {
+    if (cuadro === null) cuadro = requestAnimationFrame(actualizarProgreso);
+  }
+
+  window.addEventListener('scroll', programarProgreso, { passive: true });
+  window.addEventListener('resize', programarProgreso);
+  window.addEventListener('pageshow', programarProgreso);
+  if ('ResizeObserver' in window) new ResizeObserver(programarProgreso).observe(document.body);
+  programarProgreso();
+})();
