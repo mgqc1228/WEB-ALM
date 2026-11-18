@@ -428,3 +428,25 @@ section { padding: var(--espacio-seccion) 20px; text-align: center; }
   from { transform: translateY(0); }
   to { transform: translateY(12px); }
 }
+
+/* Volver arriba */
+.volver-arriba {
+  position: fixed;
+  z-index: 90;
+  inset-inline-end: max(16px, env(safe-area-inset-right));
+  inset-block-end: max(16px, env(safe-area-inset-bottom));
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: var(--radio-pill);
+  background: var(--rojo-oscuro);
+  color: var(--blanco);
+  box-shadow: 0 4px 16px rgba(45, 0, 0, .35);
+  font: 700 .9rem var(--fuente);
+  cursor: pointer;
+  transition: transform 180ms var(--ease);
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .volver-arriba:hover { transform: translateY(-3px); }
+}

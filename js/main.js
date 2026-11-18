@@ -122,3 +122,32 @@ if ('IntersectionObserver' in window) {
 
   document.querySelectorAll('#contenido .card').forEach(tarjeta => observarTarjetas.observe(tarjeta));
 }
+
+/* Volver arriba */
+(() => {
+  const contenido = document.getElementById('contenido');
+  if (!contenido) return;
+
+  const boton = document.createElement('button');
+  boton.type = 'button';
+  boton.className = 'volver-arriba';
+  boton.textContent = 'Volver arriba';
+  boton.hidden = true;
+  document.body.append(boton);
+
+  function actualizarBoton() {
+    boton.hidden = window.scrollY < 480 && document.activeElement !== boton;
+  }
+
+  boton.addEventListener('click', () => {
+    const teniaTabindex = contenido.hasAttribute('tabindex');
+    if (!teniaTabindex) contenido.setAttribute('tabindex', '-1');
+    contenido.focus({ preventScroll: true });
+    if (!teniaTabindex) contenido.removeAttribute('tabindex');
+    window.scrollTo({ top: 0 });
+  });
+  boton.addEventListener('blur', actualizarBoton);
+  window.addEventListener('scroll', actualizarBoton, { passive: true });
+  window.addEventListener('pageshow', actualizarBoton);
+  actualizarBoton();
+})();
